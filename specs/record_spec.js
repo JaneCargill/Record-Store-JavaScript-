@@ -5,7 +5,7 @@ describe("Record", function() {
   var record;
 
   beforeEach(function() {
-    record = new Record("Coldplay", "X&Y", 10);
+    record = new Record("Coldplay", "X&Y", 10, 20);
   });
 
   it("Record store has artist", function() {
@@ -19,5 +19,9 @@ describe("Record", function() {
   it("Record store has price", function() {
     assert.equal(10, record.price);
   });
+
+  // it("Record store has quantity", function() {
+  //   assert.equal(20, record.quantity);
+  // });
 
 });
