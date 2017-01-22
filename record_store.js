@@ -13,24 +13,38 @@ RecordStore.prototype = {
     return this.inventory.forEach(function(record) {
       console.log("list", record);
     });
+
   },
+  removeIndexByTitle: function(title) {
+    var index = this.inventory.findIndex(function (record) {
+      console.log("title", record.title);
+      return record.title === title;
+    });
+      return this.inventory.splice(index, 1);
+  },
+
   sellRecords: function(title) {
-    this.balance = 0;
+    
     var filteredInventory = this.inventory.filter(function(record) {
       return (record.title === title);
-      // this.inventory
     });
+    this.removeIndexByTitle(title);
     var newArray = filteredInventory[0];
     return this.balance += newArray.price;
   },
-  getTotalRecordValue: function() {
+
+  getTotalStoreValue: function() {
     return this.inventory.reduce(function(accum, record) {
       return accum += record.price;
     }, this.balance);
   },
-  findIndex: function() {
-    
+
+  buyRecord: function(record) {
+    this.addRecords(record);
+    this.balance -= record.price;
   }
+
+  
 
 }
 

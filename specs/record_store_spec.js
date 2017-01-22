@@ -45,15 +45,28 @@ describe("RecordStore", function() {
     recordStore.addRecords(record1);
     recordStore.addRecords(record2);
     recordStore.sellRecords(record1.title);
-    assert.equal(10, recordStore.balance);
+    recordStore.sellRecords(record2.title);
+    assert.equal(15, recordStore.balance);
+  });
+
+  it("Record can sell records and remove record", function() {
+    recordStore.addRecords(record1);
+    recordStore.addRecords(record2);
+    // recordStore.findIndexByTitle(record1.title)
+    recordStore.sellRecords(record2.title);
+    assert.deepEqual([record1], recordStore.inventory);
   });
 
   it("Get the total value of inventory", function() {
     recordStore.addRecords(record1);
     recordStore.addRecords(record2);
     recordStore.sellRecords(record1.title);
-    assert.equal(25, recordStore.getTotalRecordValue());
+    assert.equal(15, recordStore.getTotalStoreValue());
   });
+
+
+
+
 
 });
 
